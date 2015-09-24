@@ -1,0 +1,8 @@
+#* Copyright 2016 Yahoo Inc. *#
+#* Licensed under the terms of the Apache 2.0 license. Please see LICENSE file in the project root for terms. #*
+#* @vtlvariable name="d" type="com.yahoo.maven.visitor.DisjunctContext" *#
+#* @vtlvariable name="c" type="com.yahoo.maven.visitor.BaseContext" *#
+#macro(pkg $c)#if(${c.package})package ${c.package};
+
+#end#end
+#macro(visitorSignature $d)${d.methodName}(#foreach($p in ${d.parameters})$p.covariantType $p.name#if($foreach.hasNext), #end#end)#end
