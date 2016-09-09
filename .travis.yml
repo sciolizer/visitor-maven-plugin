@@ -4,3 +4,5 @@ jdk:
 cache:
   directories:
   - "$HOME/.m2"
+after_success:
+  - travis/deploy.sh
