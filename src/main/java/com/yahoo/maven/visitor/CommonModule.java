@@ -2,7 +2,6 @@
 // Licensed under the terms of the Apache 2.0 license. Please see LICENSE file in the project root for terms.
 package com.yahoo.maven.visitor;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.*;
 import com.google.inject.matcher.Matchers;
 import com.google.inject.spi.TypeEncounter;
@@ -33,7 +32,6 @@ public class CommonModule extends AbstractModule {
         velocityEngine.setProperty(RuntimeConstants.VM_LIBRARY, "visitor-maven-plugin/templates/VM_global_library.vm");
         velocityEngine.init();
         bind(VelocityEngine.class).toInstance(velocityEngine);
-        bind(ObjectMapper.class).toInstance(new ObjectMapper());
         bindListener(Matchers.any(), new TypeListener() {
             @Override
             public <I> void hear(TypeLiteral<I> type, TypeEncounter<I> encounter) {
