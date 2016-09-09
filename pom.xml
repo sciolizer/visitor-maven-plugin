@@ -7,7 +7,7 @@
 
     <groupId>com.yahoo.maven.visitor</groupId>
     <artifactId>visitor-maven-plugin</artifactId>
-    <version>0.0.12</version>
+    <version>0.0.13</version>
     <packaging>maven-plugin</packaging>
 
     <name>Visitor pattern boilerplate generator</name>
