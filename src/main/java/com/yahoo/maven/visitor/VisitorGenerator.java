@@ -2,6 +2,8 @@
 // Licensed under the terms of the Apache 2.0 license. Please see LICENSE file in the project root for terms.
 package com.yahoo.maven.visitor;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +35,7 @@ public abstract class VisitorGenerator {
             String aPackage = packageTail == -1 ? null : name.substring(0, packageTail);
             String disjunctName = packageTail == -1 ? name : name.substring(packageTail + 1, name.length());
             String className = capitalizer.capitalize(disjunctName);
-            String dir = aPackage == null ? "" : aPackage.replaceAll("\\.", FileSystems.getDefault().getSeparator());
+            String dir = aPackage == null ? "" : StringUtils.replace(aPackage, ".", FileSystems.getDefault().getSeparator());
             List<TypeParameterContext> typeParameterContexts = new ArrayList<>();
             Set<String> typeParameterNames = new LinkedHashSet<>();
             if (visitor.getTypeParameters() != null) {
