@@ -10,7 +10,7 @@ Visitor pattern boilerplate generator
             <plugin>
                 <groupId>com.yahoo.maven.visitor</groupId>
                 <artifactId>visitor-maven-plugin</artifactId>
-                <version>0.0.9</version>
+                <version>0.0.13</version>
                 <executions>
                     <execution>
                         <id>generate-visitors</id>
@@ -68,6 +68,26 @@ Visitor pattern boilerplate generator
             </plugin>
         </plugins>
     </build>
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-sciolizer-maven</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/sciolizer/maven</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-sciolizer-maven</id>
+            <name>bintray-plugins</name>
+            <url>http://dl.bintray.com/sciolizer/maven</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
 ```
 
