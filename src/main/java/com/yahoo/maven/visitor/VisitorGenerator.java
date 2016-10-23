@@ -24,6 +24,7 @@ public abstract class VisitorGenerator {
     @InjectTemplate("visitor") protected TemplateMerger visitorTemplate;
     @InjectTemplate("defaultingVisitor") protected TemplateMerger defaultingVisitorTemplate;
     @InjectTemplate("identityVisitor") protected TemplateMerger identityVisitorTemplate;
+    @InjectTemplate("defaultingIdentityVisitor") protected TemplateMerger defaultingIdentityVisitorTemplate;
 
     protected abstract Visitor[] getVisitors();
     protected abstract Path getOutputDirectory();
@@ -209,6 +210,10 @@ public abstract class VisitorGenerator {
             try (Writer visitorWriter = Files.newBufferedWriter(outputFolder.resolve("Identity" + className + "Visitor.java"))) {
                 class ThisIdentityVisitorContext extends AbstractBaseContext implements IdentityVisitorContext {}
                 identityVisitorTemplate.merge(visitorWriter, new ThisIdentityVisitorContext());
+            }
+            try (Writer visitorWriter = Files.newBufferedWriter(outputFolder.resolve("DefaultingIdentity" + className + "Visitor.java"))) {
+                class ThisIdentityVisitorContext extends AbstractBaseContext implements IdentityVisitorContext, DefaultingVisitorContext {}
+                defaultingIdentityVisitorTemplate.merge(visitorWriter, new ThisIdentityVisitorContext());
             }
         }
     }
