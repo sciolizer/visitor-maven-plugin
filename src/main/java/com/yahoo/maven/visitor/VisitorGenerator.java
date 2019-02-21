@@ -57,75 +57,8 @@ public abstract class VisitorGenerator {
                             }
 
                             @Override
-                            public String getCovariantType() {
-                                List<String> typeParameters = getTypeParameters();
-                                if (typeParameters.isEmpty()) {
-                                    return getType();
-                                }
-                                return getBareType() + "<" + getTypeParameters().stream().map(new Function<String, String>() {
-                                    @Override
-                                    public String apply(String s) {
-                                        if (typeParameterNames.contains(s)) {
-                                            return "? extends " + s;
-                                        }
-                                        return s;
-                                    }
-                                }).collect(Collectors.joining(", ")) + ">";
-                            }
-
-                            private String getBareType() {
-                                String type = getType();
-                                int i = type.indexOf('<');
-                                if (i == -1) {
-                                    return type;
-                                }
-                                return type.substring(0, i);
-                            }
-
-                            private List<String> getTypeParameters() {
-                                String type = getType();
-                                int i = type.indexOf('<');
-                                if (i == -1) {
-                                    return Collections.emptyList();
-                                }
-                                String paramsStr = type.substring(i + 1, type.lastIndexOf('>'));
-                                String regex = ",";
-                                String[] parts = paramsStr.split(regex);
-                                return Stream.of(parts).map(String::trim).collect(Collectors.toList());
-                            }
-
-                            @Override
-                            public String getWildcardType() {
-                                List<String> typeParameters = getTypeParameters();
-                                if (typeParameters.isEmpty()) {
-                                    return getType();
-                                }
-                                return getBareType() + "<" + getTypeParameters().stream().map(new Function<String, String>() {
-                                    @Override
-                                    public String apply(String s) {
-                                        if (typeParameterNames.contains(s)) {
-                                            return "?";
-                                        }
-                                        return s;
-                                    }
-                                }).collect(Collectors.joining(", ")) + ">";
-                            }
-
-                            @Override
                             public String getName() {
                                 return parameter.name;
-                            }
-
-                            @Override
-                            public String getParametricTypeBound() {
-                                TypeParameter[] typeParameters = visitor.getTypeParameters();
-                                if (typeParameters == null) return null;
-                                for (TypeParameter typeParameter : typeParameters) {
-                                    if (getType().equals(typeParameter.getName())) {
-                                        return typeParameter.getConstraint() == null ? "Object" : typeParameter.getConstraint();
-                                    }
-                                }
-                                return null;
                             }
 
                             @Override

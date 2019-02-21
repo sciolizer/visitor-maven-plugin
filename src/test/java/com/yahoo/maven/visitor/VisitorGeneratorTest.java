@@ -43,6 +43,12 @@ public class VisitorGeneratorTest extends VisitorTest {
                                         new Disjunction("application", new Parameter[]{new Parameter("test.ExtendableExpression<Other>", "applier"), new Parameter("test.ExtendableExpression<Other>", "applicand")}),
                                         new Disjunction("lambda", new Parameter[]{new Parameter("String", "identifier"), new Parameter("test.ExtendableExpression<Other>", "body")})}),
                         new Visitor(
+                                "test.RecursiveExpression",
+                                new TypeParameter[] { new TypeParameter("Var", null) },
+                                new Disjunction[]{
+                                        new Disjunction("variable", new Parameter[]{new Parameter("Var", "name")}),
+                                        new Disjunction("application", new Parameter[]{new Parameter("test.RecursiveExpression<Var>", "applier"), new Parameter("java.util.List<test.RecursiveExpression<Var>>", "applicand")})}),
+                        new Visitor(
                                 "SignedNumber",
                                 new TypeParameter[]{new TypeParameter("N", "Number")},
                                 new Disjunction[]{

@@ -6,14 +6,8 @@ public interface ParameterContext {
 
     String getType();
 
-    String getCovariantType();
-
-    String getWildcardType();
-
     String getName();
 
     String getHashExpression();
-
-    String getParametricTypeBound();
 
 }

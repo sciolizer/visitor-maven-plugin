@@ -5,4 +5,4 @@
 #macro(pkg $c)#if(${c.package})package ${c.package};
 
 #end#end
-#macro(visitorSignature $d)${d.methodName}(#foreach($p in ${d.parameters})$p.covariantType $p.name#if($foreach.hasNext), #end#end)#end
+#macro(visitorSignature $d)${d.methodName}(#foreach($p in ${d.parameters})$p.type $p.name#if($foreach.hasNext), #end#end)#end
