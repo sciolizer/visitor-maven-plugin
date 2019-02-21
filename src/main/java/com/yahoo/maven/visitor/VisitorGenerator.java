@@ -88,7 +88,7 @@ public abstract class VisitorGenerator {
                                 if (i == -1) {
                                     return Collections.emptyList();
                                 }
-                                String paramsStr = type.substring(i + 1, type.indexOf('>'));
+                                String paramsStr = type.substring(i + 1, type.lastIndexOf('>'));
                                 String regex = ",";
                                 String[] parts = paramsStr.split(regex);
                                 return Stream.of(parts).map(String::trim).collect(Collectors.toList());
